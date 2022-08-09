@@ -9,7 +9,7 @@ class SocketRouter{
         try{
             //this.ws = new WebSocketServer({server});
             console.log('start socketServer')
-            this.ws = new WebSocketServer({port:8100});
+            this.ws = new WebSocketServer({server});
 
             this.ws.on('connection', (ws) =>{
                 let user = null
