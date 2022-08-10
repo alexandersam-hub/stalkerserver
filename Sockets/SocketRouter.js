@@ -21,8 +21,6 @@ class SocketRouter{
                         case 'login':
                             token = data.token
                             user = tokenService.validationToken(data.token)
-                            if (!user || !data ||!token )
-                                return
                             if(data.game){
                                 game = data.game
                             }else{
