@@ -53,6 +53,7 @@ class progressTeam {
         this.logScore.push(this.currentScore)
         this.currentTasks = this.mapTeam[RoundNumber] ? this.mapTeam[RoundNumber] : []
         this.currentTasks.map(task=>{
+            if (task && task.type)
             switch (task.type) {
                 case 'task':
                     break
