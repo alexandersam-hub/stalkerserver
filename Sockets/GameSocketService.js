@@ -37,6 +37,8 @@ class GameSocketService{
         SendMessage.sendMessage(ws, DataCollection.getGameData(this.progress.playersWs, this.progress))
     }
     disconnect(user,token){
+        console.log(user)
+        if(user)
         switch (user.role) {
             case 'player':
                 delete(this.progress.playersWs[token])
