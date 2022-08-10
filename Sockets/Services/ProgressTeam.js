@@ -184,6 +184,7 @@ class progressTeam {
         const tasks = []
         let isGetAdditional = false
         this.currentTasks.map(task=>{
+            if (task && task.id)
             if (this.isAnswer[task.id]){
                 if (this.additionalTasks && !isGetAdditional && (!this.isAnswerAdditional[this.additionalCountRound] || !this.isAnswerAdditional[this.additionalCountRound].isAnswer)){
                     if(!this.isAnswerAdditional[this.additionalCountRound])
@@ -194,6 +195,7 @@ class progressTeam {
                 }
             }
             else
+            if (task && task.type)
             switch (task.type) {
                 case 'pairTask':
                     tasks.push(task)
