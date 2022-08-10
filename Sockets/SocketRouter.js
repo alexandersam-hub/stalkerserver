@@ -23,7 +23,7 @@ class SocketRouter{
                             user = tokenService.validationToken(data.token)
                             if(data.game){
                                 game = data.game
-                            }else if(user.game){
+                            }else if(user && user.game){
                                 game = user.game
                                 data.game = game
                             }
