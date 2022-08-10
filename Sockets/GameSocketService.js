@@ -19,6 +19,8 @@ class GameSocketService{
 
 //----------------упраление сокет-пользователями
     connectUser(ws,data,user){
+        console.log(user)
+        if(user)
         switch (user.role) {
             case 'player':
                     this.progress.playersWs[data.token] = {user:{...user, token:data.token}, ws}
