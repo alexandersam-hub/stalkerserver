@@ -94,6 +94,7 @@ class GameSocketService{
         this.progress.additionalTasks = await this.loadDurationTask()
         this.progress.collectionKeys = await this.loadConnectionKeys()
         this.progress.teams.forEach(team=>{
+            console.log('team', team.stringName)
                 const taskMap = this.progress.maps.find(map=>map.team === team.id)?this.progress.maps.find(map=>map.team === team.id).tasks:[]
                 const tasksList = []
                 taskMap.forEach((tasks,i)=> {
