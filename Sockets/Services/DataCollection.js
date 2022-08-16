@@ -31,11 +31,7 @@ class DataCollection{
     }
 
     getGameData(playersWs, progress){
-        let counter = 0;
 
-        for (let key in playersWs){
-            counter++;
-        }
         return {
             action:'gameData',
             isStart:progress.isStart,
@@ -46,7 +42,7 @@ class DataCollection{
             score:progress.score,
             time:progress.time,
             game:progress.game,
-            countPlayerConnect:counter
+
         }
     }
     getManagerData(progress){

@@ -48,6 +48,10 @@ class GamesSocketController{
     delEvent(game, data){
         this.games[game].delEvent(data)
     }
+
+    buyAmmunition(ws, game, data, user){
+        this.games[game].buyAmmunition(ws, data,user)
+    }
 }
 
 module.exports = new GamesSocketController()

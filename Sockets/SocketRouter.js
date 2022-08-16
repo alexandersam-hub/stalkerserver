@@ -59,6 +59,9 @@ class SocketRouter{
                         case 'delEvent':
                             ControlGamesSocket.delEvent(game, data)
                             break
+                        case 'buy':
+                            ControlGamesSocket.buyAmmunition(ws, game, data, user)
+                            break
                     }
                 })
 

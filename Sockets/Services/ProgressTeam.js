@@ -18,6 +18,7 @@ class progressTeam {
     event = null
     additionalTasks = null
     additionalCountRound = 0
+    isBuy = false
 
     constructor(startScore = 0, map, typeGame, additionalResource, additionalTasks) {
         this.currentScore = startScore
@@ -199,7 +200,6 @@ class progressTeam {
             switch (task.type) {
                 case 'pairTask':
                     tasks.push(task)
-
                     break
                 default:
                     tasks.push(task)
@@ -241,8 +241,13 @@ class progressTeam {
     pushGameKey(word){
         this.gameKeys.push(word)
     }
-    getDifferenceScore(roundNumber){
 
+    buyAmmunition(price){
+        this.isBuy = true
+        this.currentScore -= price
+    }
+
+    getDifferenceScore(roundNumber){
         return {currentScore:this.currentScore, difference:this.currentScore-this.logScore[roundNumber] }
     }
 }

@@ -76,6 +76,9 @@ class GameSocketService{
     pullChoice(data, user){
         this.progress.pullChoice(data, user)
     }
+    buyAmmunition(ws,data,user){
+        this.progress.buyAmmunition(ws, data, user)
+    }
 
 //----------------управление игровыми событиями
     addEvent(data){

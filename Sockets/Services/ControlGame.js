@@ -170,6 +170,12 @@ class ControlGame{
     pullChoice(data, user){
 
     }
+    buyAmmunition(ws, data, user){
+        this.progressTeams[user.id].buyAmmunition(data.price)
+        this._sendMessage({action:'reportAgentBuy', warning:false, message:'Покупка завершена.', price:this.game.agentPrice}, 'one', ws)
+        this._sendMessage({action:'score', score:this.progressTeams[user.id].getScore()},'one', ws)
+        this._sendScoreAll()
+    }
 
 //----------------игровые события
     addEvent(event){
@@ -317,7 +323,7 @@ class ControlGame{
         const scores = []
         if(this.teams)
             this.teams.forEach(team=>{
-                scores.push({team:team.stringName, score: this.progressTeams[team.id].currentScore})
+                scores.push({team:team.stringName, isBuy:this.progressTeams[team.id].isBuy, score: this.progressTeams[team.id].currentScore})
             })
         scores.sort((a,b)=>b.score-a.score)
         if (!ws) {
