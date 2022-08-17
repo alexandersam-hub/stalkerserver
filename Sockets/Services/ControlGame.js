@@ -45,7 +45,7 @@ class ControlGame{
         this.roundTasks=DataCollection.getTeamsTasksRound(this.teams,this.currentRound,this.maps,this.tasks)
         this._sendScoreAll()
         this._sendMessage(DataCollection.getGameData( this.playersWs, this), 'all')
-
+        this._sendMessage( {action:'teamsMap', tasks:this.roundTasks}, 'manager')
         this._sendMessage( {action:'teamsMap', tasks:this.roundTasks}, 'admin')
         // this._sendMessage( {action:'keyWords', words:this.keyWords}, 'admin')
         this._sendDispositionTeams()
