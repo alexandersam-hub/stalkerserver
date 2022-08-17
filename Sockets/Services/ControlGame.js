@@ -61,6 +61,7 @@ class ControlGame{
         this.isFinish = false
         this.currentRound = 0
         this.isEvent = false
+        this.keyWords=[]
         this.eventList.map(event=>event.done=false)
         this.teams.forEach(team=>{
             const taskMap = this.maps.find(map=>map.team === team.id)?this.maps.find(map=>map.team === team.id).tasks:[]
