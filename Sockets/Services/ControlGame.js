@@ -47,7 +47,7 @@ class ControlGame{
         this._sendMessage(DataCollection.getGameData( this.playersWs, this), 'all')
 
         this._sendMessage( {action:'teamsMap', tasks:this.roundTasks}, 'admin')
-        this._sendMessage( {action:'keyWords', words:this.keyWords}, 'admin')
+        // this._sendMessage( {action:'keyWords', words:this.keyWords}, 'admin')
         this._sendDispositionTeams()
     }
     stopGame(){
@@ -162,6 +162,7 @@ class ControlGame{
                 this.progressTeams[user.id].addScore(drawKey.price)
                 this.progressTeams[user.id].pushGameKey(data.answer)
                 this.collectionKeys.drawKey = this.collectionKeys.drawKey.filter(word=>word.key!==data.answer)
+                this.keyWords.push({word:data.answer, team:user.stringName, type:'task', price:drawKey.price})
                 this._sendMessage({action:'reportAgent', warning:false, message:'Ответ принят.', price:this.game.agentPrice}, 'one', ws)
                 this._sendMessage({action:'score', score:this.progressTeams[user.id].getScore()},'one', ws)
                 this._sendScoreAll()
@@ -234,7 +235,7 @@ class ControlGame{
     connectAdmin(){
         this._sendMessage( {action:'teamsMap', tasks:this.isEvent?this.eventList.find(event=>!event.done && event.round === this.currentRound + 1):this.roundTasks}, 'admin')
         this._sendMessage( {action:'event', events:this.eventList}, 'admin')
-        this._sendMessage( {action:'keyWords', words:this.keyWords}, 'admin')
+
     }
 
 //----------------Управление раундами игры
@@ -342,6 +343,7 @@ class ControlGame{
                 this._sendMessage({action: 'scoreTeams', scores: scores}, 'one', this.playersWs[team].ws)
             }
             this._sendMessage({action: 'scoreTeams', scores: scores}, 'admin')
+            this._sendMessage( {action:'keyWords', words:this.keyWords}, 'admin')
             this._sendMessage({action: 'scoreTeams', scores: scores}, 'manager')
         }
         else{
