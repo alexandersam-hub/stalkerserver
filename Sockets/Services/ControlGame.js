@@ -236,7 +236,7 @@ class ControlGame{
         this._sendMessage( {action:'teamsMap', tasks:this.isEvent?this.eventList.find(event=>!event.done && event.round === this.currentRound + 1):this.roundTasks}, 'admin')
         this._sendMessage( {action:'event', events:this.eventList}, 'admin')
         this._sendMessage( {action:'keyWords', words:this.keyWords}, 'admin')
-
+        this._sendScoreAll()
     }
 
 //----------------Управление раундами игры
