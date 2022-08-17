@@ -336,7 +336,8 @@ class ControlGame{
         const scores = []
         if(this.teams)
             this.teams.forEach(team=>{
-                scores.push({team:team.stringName, isBuy:this.progressTeams[team.id]?this.progressTeams[team.id].isBuy:false, score: this.progressTeams[team.id].currentScore})
+
+                scores.push({team:team.stringName, isBuy:this.progressTeams[team.id]?this.progressTeams[team.id].isBuy:false, score:  this.progressTeams[team.id]?this.progressTeams[team.id].currentScore:0})
             })
         scores.sort((a,b)=>b.score-a.score)
         if (!ws) {
