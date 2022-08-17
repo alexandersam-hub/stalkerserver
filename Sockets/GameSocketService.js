@@ -19,7 +19,7 @@ class GameSocketService{
 
 //----------------упраление сокет-пользователями
     connectUser(ws,data,user){
-        console.log(user)
+      //  console.log(user)
         if(user)
         switch (user.role) {
             case 'player':
@@ -39,7 +39,7 @@ class GameSocketService{
         SendMessage.sendMessage(ws, DataCollection.getGameData(this.progress.playersWs, this.progress))
     }
     disconnect(user,token){
-        console.log(user)
+      //  console.log(user)
         if(user)
         switch (user.role) {
             case 'player':
@@ -101,7 +101,7 @@ class GameSocketService{
         this.progress.additionalTasks = await this.loadDurationTask()
         this.progress.collectionKeys = await this.loadConnectionKeys()
         this.progress.teams.forEach(team=>{
-            console.log('team', team.stringName)
+           // console.log('team', team.stringName)
                 const taskMap = this.progress.maps.find(map=>map.team === team.id)?this.progress.maps.find(map=>map.team === team.id).tasks:[]
                 const tasksList = []
                 taskMap.forEach((tasks,i)=> {
