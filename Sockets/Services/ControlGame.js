@@ -94,7 +94,7 @@ class ControlGame{
             switch (data.task.type) {
                 case "additionalQuest":
                     this.progressTeams[user.id].pullAnswer(data.task, '', data.answer)
-                    this.keyWords.push({word:data.answer, team:user.stringName, type:'additional', price:0})
+                    this.keyWords.push({word:data.answer, team:user.stringName, type:'additional', price:0, date:new Date()})
                     break
                 case 'agent':
                     if(this.collectionKeys.correctKey.find(key=>key.key === data.answer && key.mark === 'agent')){
@@ -103,7 +103,7 @@ class ControlGame{
                         }else{
                             this.progressTeams[user.id].addScore(this.game.agentPrice)
                             this.progressTeams[user.id].pushAgentKey(data.answer)
-                            this.keyWords.push({word:data.answer, team:user.stringName, type:'agent', price:data.task.price})
+                            this.keyWords.push({word:data.answer, team:user.stringName, type:'agent', price:data.task.price, date:new Date()})
                             this._sendMessage({action:'reportAgent', warning:false, message:'Ответ принят.', price:this.game.agentPrice}, 'one', ws)
                             this._sendMessage({action:'score', score:this.progressTeams[user.id].getScore()},'one', ws)
                             this._sendMessage( {action:'keyWords', words:this.keyWords}, 'admin')
@@ -115,7 +115,7 @@ class ControlGame{
                 default:
                     if(this.collectionKeys.correctKey.find(key=>key.key === data.answer && key.mark === data.task.mark)){
                         this.progressTeams[user.id].pullAnswer(data.task, 'correct', data.answer)
-                        this.keyWords.push({word:data.answer, team:user.stringName, type:'task', price:this.game.agentPrice})
+                        this.keyWords.push({word:data.answer, team:user.stringName, type:'task', price:this.game.agentPrice, date:new Date()})
                         this._sendMessage( {action:'keyWords', words:this.keyWords}, 'admin')
                         this.collectionKeys.correctKey = this.collectionKeys.correctKey.filter(word=>word.key!==data.answer)
 
@@ -141,7 +141,7 @@ class ControlGame{
                 }else{
                     this.progressTeams[user.id].addScore(this.game.agentPrice)
                     this.progressTeams[user.id].pushAgentKey(data.answer)
-                    this.keyWords.push({word:data.answer, team:user.stringName, type:'agent', price:this.game.agentPrice})
+                    this.keyWords.push({word:data.answer, team:user.stringName, type:'agent', price:this.game.agentPrice, date:new Date()})
                     this._sendMessage({action:'reportAgent', warning:false, message:'Ответ принят.', price:this.game.agentPrice}, 'one', ws)
                     this._sendMessage({action:'score', score:this.progressTeams[user.id].getScore()},'one', ws)
                     this._sendScoreAll()
@@ -154,7 +154,7 @@ class ControlGame{
                 this.progressTeams[user.id].addScore(keyGame.price)
                 this.progressTeams[user.id].pushGameKey(data.answer)
                 this.collectionKeys.correctKey = this.collectionKeys.correctKey.filter(word=>word.key!==data.answer)
-                this.keyWords.push({word:data.answer, team:user.stringName, type:'task', price:keyGame.price})
+                this.keyWords.push({word:data.answer, team:user.stringName, type:'task', price:keyGame.price, date:new Date()})
                 this._sendMessage({action:'reportAgent', warning:false, message:'Ответ принят.', price:this.game.agentPrice}, 'one', ws)
                 this._sendMessage({action:'score', score:this.progressTeams[user.id].getScore()},'one', ws)
                 this._sendScoreAll()
@@ -162,7 +162,7 @@ class ControlGame{
                 this.progressTeams[user.id].addScore(drawKey.price)
                 this.progressTeams[user.id].pushGameKey(data.answer)
                 this.collectionKeys.drawKey = this.collectionKeys.drawKey.filter(word=>word.key!==data.answer)
-                this.keyWords.push({word:data.answer, team:user.stringName, type:'task', price:drawKey.price})
+                this.keyWords.push({word:data.answer, team:user.stringName, type:'task', price:drawKey.price, date:new Date()})
                 this._sendMessage({action:'reportAgent', warning:false, message:'Ответ принят.', price:this.game.agentPrice}, 'one', ws)
                 this._sendMessage({action:'score', score:this.progressTeams[user.id].getScore()},'one', ws)
                 this._sendScoreAll()
